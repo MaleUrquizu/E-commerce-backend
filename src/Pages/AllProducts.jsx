@@ -30,8 +30,8 @@ export const AllProducts = () => {
         </div>
       </form>
       <div className='content'>
-        {filteredProducts.map((product) => (
-          <div className='card el-wrapper' key={product.id}>
+        {filteredProducts.map((product, index) => (
+          <div className='card el-wrapper' key={index}>
             <div className='box-up'>
               <Link to={`/Descripcion/${product.id}`}>
                 <img className='img' src={product.image} alt={product.title} />

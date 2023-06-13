@@ -15,7 +15,7 @@ export const Hombre = () => {
 
   const filteredProducts = AllProducts.filter((product) => {
     return (
-      product.category.toLowerCase() === "men's clothing" &&
+      product.category && product.category.toLowerCase() === "men's clothing" &&
       product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
   });
@@ -48,8 +48,8 @@ export const Hombre = () => {
         </div>
       </form>
       <div className='content'>
-        {filteredProducts.map((product) => (
-          <div className='card el-wrapper' key={product.id}>
+        {filteredProducts.map((product, index) => (
+          <div className='card el-wrapper' key={index}>
             <div className='box-up'>
               <Link to={`/Descripcion/${product.id}`}>
                 <img className='img' src={product.image} alt={product.title} />

@@ -18,9 +18,11 @@ const {valueSearch,onImputChange,onResetForm} = useForm({
 		quanty: 1, 
 	  }));
 
+
+	const URI = 'http://localhost:8000/products/'
 	// Llamar todos los Productos
 	const getGlobalProducts = async () => {
-		axios.get('https://fakestoreapi.com/products')
+		axios.get(URI)
 		.then(res => {
 			setAllProducts(res.data);
 			console.log(res.data)
@@ -31,6 +33,12 @@ const {valueSearch,onImputChange,onResetForm} = useForm({
 	useEffect(() => {
 		getGlobalProducts();
 	}, []);
+
+	//procedimineto para eliminar un producto
+    const deleteProduct = async (id) => {
+		await axios.delete(`${URI}${id}`)
+		getGlobalProducts()
+	 }
 
 	const buyProducts = (per) => {
 		const productrepeat = cart.find((item) => item.id === per.id);
@@ -50,6 +58,7 @@ const {valueSearch,onImputChange,onResetForm} = useForm({
 		 buyProducts,
 		 valueSearch,
 		 onImputChange,
+		 deleteProduct,
 		 onResetForm}}>
 			{children}
 		</ProductContext.Provider>
